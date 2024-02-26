@@ -1,13 +1,22 @@
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
+import { auth, signOut } from "@/auth";
 
-const SettingsPage = () => {
-  const session = auth();
+const SettingsPage = async () => {
+  const session = await auth();
 
-  if (!session) {
-    redirect("/auth/login");
-  }
-  return <div>{JSON.stringify(session)}</div>;
+  return (
+    <div>
+      {JSON.stringify(session)}
+      <form
+        action={async () => {
+          "use server";
+
+          await signOut();
+        }}
+      >
+        <button type="submit">Sign out</button>
+      </form>
+    </div>
+  );
 };
 
 export default SettingsPage;
