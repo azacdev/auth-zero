@@ -9,7 +9,6 @@ import { RegisterSchema } from "@/schemas";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -69,7 +68,7 @@ export const RegisterForm = () => {
                     <Input
                       {...field}
                       disabled={isPending}
-                      placeholder="azacdev"
+                      placeholder="name"
                     />
                   </FormControl>
                   <FormMessage />
@@ -86,7 +85,7 @@ export const RegisterForm = () => {
                     <Input
                       {...field}
                       disabled={isPending}
-                      placeholder="azacdev@gmail.com"
+                      placeholder="john.doe@gmail.com"
                       type="email"
                     />
                   </FormControl>
