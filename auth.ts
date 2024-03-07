@@ -5,6 +5,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 
 import authConfig from "@/auth.config";
 import { getUserById } from "@/data/user";
+import { getTwoFactorConfirmationByUserId } from "./data/two-factor-confirmation";
 
 export const {
   handlers: { GET, POST },
@@ -26,19 +27,33 @@ export const {
   },
   callbacks: {
     async signIn({ user, account }) {
+      // console.log("AUTH USER", user);
+
       // Allow OAuth without email verification
       if (account?.provider !== "credentials") return true;
 
-      let existingUser;
-
-      if (user.id) {
-        existingUser = await getUserById(user?.id);
-      }
+      // @ts-ignore
+      const existingUser = await getUserById(user?.id);
 
       // Prevent sign in without email verification
       if (!existingUser?.emailVerified) return false;
 
-      // TODO: Add 2FA check
+      console.log(existingUser);
+      
+      if (existingUser.isTwoFactorEnabled) {
+        const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(
+          existingUser.id
+        );
+
+        console.log({ twoFactorConfirmation });
+
+        if (!twoFactorConfirmation) return false;
+
+        // Delete two factor confirmation for next sign in
+        await db.twoFactorConfirmation.delete({
+          where: { id: twoFactorConfirmation.id },
+        });
+      }
 
       return true;
     },
