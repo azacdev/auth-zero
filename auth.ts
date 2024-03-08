@@ -39,7 +39,7 @@ export const {
       if (!existingUser?.emailVerified) return false;
 
       console.log(existingUser);
-      
+
       if (existingUser.isTwoFactorEnabled) {
         const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(
           existingUser.id
@@ -65,6 +65,11 @@ export const {
       if (token.role && session.user) {
         session.user.role = token.role as UserRole;
       }
+
+      if (token.isTwoFactorEnabled && session.user) {
+        session.user.isTwoFactorEnabled = token.isTwoFactorEnabled;
+      }
+
       return session;
     },
     async jwt({ token }) {
@@ -77,6 +82,7 @@ export const {
       }
 
       token.role = existingUser.role;
+      token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
 
       return token;
     },
