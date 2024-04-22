@@ -2,7 +2,7 @@ import { RegisterForm } from "@/components/auth/register-form";
 
 const RegisterPage = () => {
   return (
-    <div>
+    <div className="w-full">
       <RegisterForm />
     </div>
   );

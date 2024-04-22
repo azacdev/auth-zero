@@ -51,9 +51,10 @@ export const RegisterForm = () => {
   return (
     <CardWrapper
       headerLabel="Create an account"
-      backButtonLabel="Already have an account"
+      backButtonLabel="Already have an account? Log in."
       backButtonHref="/auth/login"
       showSocial
+      socialsLabel="Sign up"
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -69,6 +70,7 @@ export const RegisterForm = () => {
                       {...field}
                       disabled={isPending}
                       placeholder="name"
+                      className="bg-[#16171C]"
                     />
                   </FormControl>
                   <FormMessage />
@@ -87,6 +89,7 @@ export const RegisterForm = () => {
                       disabled={isPending}
                       placeholder="john.doe@gmail.com"
                       type="email"
+                      className="bg-[#16171C]"
                     />
                   </FormControl>
                   <FormMessage />
@@ -105,6 +108,7 @@ export const RegisterForm = () => {
                       disabled={isPending}
                       placeholder="******"
                       type="password"
+                      className="bg-[#16171C]"
                     />
                   </FormControl>
                   <FormMessage />
@@ -114,7 +118,7 @@ export const RegisterForm = () => {
           </div>
           <FormError message={error} />
           <FormSuccess message={success} />
-          <Button type="submit" className="w-full" disabled={isPending}>
+          <Button type="submit" className="w-full" disabled={isPending} variant={"secondary"}>
             Create an account
           </Button>
         </form>

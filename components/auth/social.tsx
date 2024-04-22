@@ -7,7 +7,11 @@ import { SiGithub } from "react-icons/si";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { Button } from "../ui/button";
 
-export const Social = () => {
+interface SocialProps {
+  socialsLabel: string | undefined;
+}
+
+export const Social = ({ socialsLabel }: SocialProps) => {
   const onClick = (provider: "google" | "github") => {
     signIn(provider, {
       callbackUrl: DEFAULT_LOGIN_REDIRECT,
@@ -15,23 +19,21 @@ export const Social = () => {
   };
 
   return (
-    <div className="flex flex-col items-center w-full gap-y-2">
+    <div className="flex flex-col lg:flex-row items-center w-full gap-2 text-slate-900">
       <Button
         size={"lg"}
-        className="w-full"
-        variant={"outline"}
+        className="w-full font-semibold bg-[#16171C] border"
         onClick={() => onClick("google")}
       >
-        <FcGoogle className="h-5 w-5" />
+        <FcGoogle className="h-5 w-5 mr-3" /> {socialsLabel} with Google
       </Button>
 
       <Button
         size={"lg"}
-        className="w-full"
-        variant={"outline"}
+        className="w-full font-semibold bg-[#16171C] border"
         onClick={() => onClick("github")}
       >
-        <SiGithub className="h-5 w-5" />
+        <SiGithub className="h-5 w-5  mr-3" /> {socialsLabel} with Github
       </Button>
     </div>
   );

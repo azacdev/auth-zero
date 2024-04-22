@@ -67,6 +67,7 @@ export const ResetForm = () => {
                       disabled={isPending}
                       placeholder="john.doe@gmail.com"
                       type="email"
+                      className="bg-[#16171C]"
                     />
                   </FormControl>
                   <FormMessage />
@@ -76,7 +77,7 @@ export const ResetForm = () => {
           </div>
           <FormError message={error} />
           <FormSuccess message={success} />
-          <Button type="submit" className="w-full" disabled={isPending}>
+          <Button type="submit" className="w-full" disabled={isPending} variant={"secondary"}>
             Send reset email
           </Button>
         </form>

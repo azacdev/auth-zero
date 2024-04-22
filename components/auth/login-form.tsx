@@ -74,9 +74,10 @@ export const LoginForm = () => {
   return (
     <CardWrapper
       headerLabel="Welcome back"
-      backButtonLabel="Don't have an account"
+      backButtonLabel="Don't have an account? Sign up."
       backButtonHref="/auth/register"
       showSocial
+      socialsLabel="Sign up"
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -93,6 +94,7 @@ export const LoginForm = () => {
                         {...field}
                         disabled={isPending}
                         placeholder="******"
+                        className="bg-[#16171C]"
                       />
                     </FormControl>
                     <FormMessage />
@@ -114,6 +116,7 @@ export const LoginForm = () => {
                           disabled={isPending}
                           placeholder="john.doe@gmail.com"
                           type="email"
+                          className="bg-[#16171C]"
                         />
                       </FormControl>
                       <FormMessage />
@@ -132,6 +135,7 @@ export const LoginForm = () => {
                           disabled={isPending}
                           placeholder="******"
                           type="password"
+                          className="bg-[#16171C]"
                         />
                       </FormControl>
                       <FormMessage />
@@ -144,14 +148,14 @@ export const LoginForm = () => {
               size={"sm"}
               variant={"link"}
               asChild
-              className="px-0 font-normal"
+              className="px-0 font-normal text-slate-200"
             >
               <Link href={"/auth/reset"}>Forgot password?</Link>
             </Button>
           </div>
           <FormError message={error || urlError} />
           <FormSuccess message={success} />
-          <Button type="submit" className="w-full" disabled={isPending}>
+          <Button type="submit" className="w-full" disabled={isPending} variant={"secondary"}>
             {showTwoFactor ? "Confirm" : "Login"}
           </Button>
         </form>
