@@ -22,7 +22,7 @@ export const ResetSchema = z.object({
   }),
 });
 
-export const RegisterSchema = z.object({
+export const SignupSchema = z.object({
   email: z.string().email({
     message: "Email is required",
   }),

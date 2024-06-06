@@ -14,8 +14,8 @@ export const {
   signOut,
 } = NextAuth({
   pages: {
-    signIn: "/auth/login",
-    error: "/auth/error",
+    signIn: "/login",
+    error: "/error",
   },
   events: {
     async linkAccount({ user }) {
@@ -67,6 +67,7 @@ export const {
       }
 
       if (token.isTwoFactorEnabled && session.user) {
+        // @ts-ignore
         session.user.isTwoFactorEnabled = token.isTwoFactorEnabled;
       }
 
