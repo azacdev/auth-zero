@@ -1,9 +1,9 @@
-import { RegisterForm } from "@/components/auth/register-form";
+import { SignupForm } from "@/components/forms/signup-form";
 
 const RegisterPage = () => {
   return (
     <div className="w-full">
-      <RegisterForm />
+      <SignupForm />
     </div>
   );
 };
